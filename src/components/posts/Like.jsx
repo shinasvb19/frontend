@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiOutlineComment, AiFillEdit } from "react-icons/ai";
 import { FaShareAlt } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
@@ -11,35 +11,19 @@ import {
 } from "../../features/auth/authSlice";
 import Modal from "../modals/Modal";
 const Like = ({ liked, onClose }) => {
-  const [comment, SetComment] = useState();
-  const onComment = (e) => {
-    SetComment(e.target.value);
-  };
   // console.log(liked.post);
-  const token = useSelector(selectCurrentToken);
-  const userId = useSelector(selectCurrentUser);
-  const id = liked.post._id;
-  // console.log(liked.post._id);
-  const handleSubmit = () => {
-    // console.log("submitted");
-    const instance = axios.create({
-      baseURL: "http://localhost:5000",
-      headers: { "X-Custom-Header": `${token}` },
-    });
-    instance.post("/post/comment", { comment, userId, id }).then((response) => {
-      console.log(response.data);
-    });
-  };
 
-  // console.log(onClose);
+  // console.log(liked.post._id);
+
+  // console.log("yea mate", liked.allComments);
   return (
     <div>
       <Modal
         open={liked.open}
         onClose={onClose}
-        onComment={onComment}
-        comment={comment}
-        handleSubmit={handleSubmit}
+        onComment={liked.onComment}
+        allComments={liked.allComments}
+        handleSubmit={liked.handleSubmit}
       />
       <div className=" w-full h-[50px] font-extrabold text-2xl flex">
         <button
@@ -58,6 +42,7 @@ const Like = ({ liked, onClose }) => {
           className="flex mx-auto justify-between"
           onClick={(e) => {
             liked.openModal();
+            liked.getComments();
           }}
         >
           <AiOutlineComment />

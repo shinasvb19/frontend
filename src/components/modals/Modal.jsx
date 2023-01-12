@@ -18,7 +18,15 @@ const Register_style = {
   padding: "50px",
   zIndex: 1000,
 };
-const Modal = ({ open, onClose, onComment, comment, handleSubmit }) => {
+const Modal = ({
+  open,
+  onClose,
+  onComment,
+  comment,
+  handleSubmit,
+  allComments,
+}) => {
+  console.log("this is from here", allComments);
   // console.log("aaaa", onClose);
   // console.log(open);
   // console.log(comment);

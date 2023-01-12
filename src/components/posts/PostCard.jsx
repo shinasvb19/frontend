@@ -5,29 +5,34 @@ import {
   selectCurrentToken,
   selectCurrentUser,
 } from "../../features/auth/authSlice";
-
 import Like from "./Like";
+
 const PostCard = ({ post }) => {
   const [open, setOpen] = useState(false);
   const openModal = () => {
     setOpen(true);
   };
+  const [comment, SetComment] = useState();
   const userId = useSelector(selectCurrentUser);
   const id = post._id;
   // console.log(post.likes.includes(userId));
   const token = useSelector(selectCurrentToken);
-
+  const [allComments, setAllComments] = useState({});
   const [liked, SetLiked] = useState(
     post ? post.likes.includes(userId) : false
   );
   const [likesCount, SetLikesCount] = useState(post.likes.length);
   // console.log("this clg", post.likes);
+  const instance = axios.create({
+    baseURL: "http://localhost:5000",
+    headers: { "X-Custom-Header": `${token}` },
+  });
+  const onComment = (e) => {
+    SetComment(e.target.value);
+  };
   const updateLike = () => {
     SetLiked(!liked);
-    const instance = axios.create({
-      baseURL: "http://localhost:5000",
-      headers: { "X-Custom-Header": `${token}` },
-    });
+
     instance.post("/post/like", { userId, id }).then((response) => {
       // console.log(response.data);
       // response.data;
@@ -36,9 +41,26 @@ const PostCard = ({ post }) => {
     });
   };
 
+  const handleSubmit = () => {
+    // console.log("submitted");
+    comment?.length
+      ? instance
+          .post("/post/comment", { comment, userId, id })
+          .then((response) => {
+            console.log(response.data);
+          })
+      : console.log("comment cant be empty");
+  };
+  const getComments = () => {
+    instance.get(`/post/comment?id=${id}&userId=${userId}`).then((response) => {
+      console.log("ith thanda ", response.data._id);
+      setAllComments(response.data);
+    });
+  };
+  // console.log("initial", allComments.comments);
   return (
     <>
-      <div className="bg-[#FFFFFF] flex flex-col shrink px-8  h-auto mb-10 min-w-[300px] py-8 max-w-[450px] mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]  mt-12    rounded-lg ">
+      <div className="bg-[#FFFFFF] flex flex-col shrink px-8  h-auto mb-10 min-w-[300px] py-8 max-w-[450px] mx-auto shadow-[0_35px_60px_-14px_rgba(0,0,0,0.2)]  mt-12    rounded-lg ">
         <div className="flex">
           <div
             className={`mr-8 w-[50px] h-[50px] bg-[url(${post.url})] rounded-md bg-cover`}
@@ -66,6 +88,11 @@ const PostCard = ({ post }) => {
             open,
             openModal,
             post,
+            handleSubmit,
+            getComments,
+            allComments,
+            SetComment,
+            onComment,
           }}
           onClose={() => setOpen(false)}
         />

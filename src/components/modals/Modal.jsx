@@ -26,7 +26,7 @@ const Modal = ({
   handleSubmit,
   allComments,
 }) => {
-  console.log("this is from here", allComments);
+  // console.log("this is from here", allComments);
   // console.log("aaaa", onClose);
 
   // console.log(open);

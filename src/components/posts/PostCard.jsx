@@ -12,12 +12,13 @@ const PostCard = ({ post }) => {
   const openModal = () => {
     setOpen(true);
   };
+  const [trigger, setTrigger] = useState(false);
   const [comment, SetComment] = useState();
   const userId = useSelector(selectCurrentUser);
   const id = post._id;
   // console.log(post.likes.includes(userId));
   const token = useSelector(selectCurrentToken);
-  const [allComments, setAllComments] = useState({});
+  const [allComments, setAllComments] = useState([]);
   const [liked, SetLiked] = useState(
     post ? post.likes.includes(userId) : false
   );
@@ -40,20 +41,22 @@ const PostCard = ({ post }) => {
       SetLikesCount(response.data.updatedPost.likes.length);
     });
   };
-
+  useEffect(() => {
+    getComments();
+  }, [trigger]);
   const handleSubmit = () => {
     // console.log("submitted");
     comment?.length
       ? instance
           .post("/post/comment", { comment, userId, id })
           .then((response) => {
-            console.log(response.data);
+            setTrigger(!trigger);
           })
       : console.log("comment cant be empty");
   };
   const getComments = () => {
     instance.get(`/post/comment?id=${id}&userId=${userId}`).then((response) => {
-      console.log("ith thanda ", response.data._id);
+      // console.log("ith thanda ", response.data._id);
       setAllComments(response.data);
     });
   };

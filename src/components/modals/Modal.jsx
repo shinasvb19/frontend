@@ -28,6 +28,7 @@ const Modal = ({
 }) => {
   console.log("this is from here", allComments);
   // console.log("aaaa", onClose);
+
   // console.log(open);
   // console.log(comment);
   if (!open) return null;
@@ -46,10 +47,17 @@ const Modal = ({
         </div>
         <div className="w-[600px] h-[620px] flex  rounded-2xl  pl-4 mb-8 overflow-y-scroll no-scrollbar">
           <div className="mt-4 mr-4">
-            <div className="bg-[#fefefe] w-[500px] p-5 min-h-[70px] rounded-3xl flex flex-col align-center justify-center shadow-xl font-normal hover:scale-105">
-              <h1 className="font-semibold">SHINAS V B</h1>
-              <h1 className="mr-4 mt-2 text-[#585858]">adadadadada</h1>
-            </div>
+            {allComments.map((comment) => {
+              // console.log(comment);
+              return (
+                <div className="bg-[#fefefe] w-[500px] p-5 min-h-[70px] mt-6 rounded-3xl flex flex-col align-center justify-center shadow-xl font-normal hover:scale-105">
+                  <h1 className="font-semibold">{comment.foundUser[0].name}</h1>
+                  <h1 className="mr-4 mt-2 text-[#585858]">
+                    {comment.comment}
+                  </h1>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="flex w-[600px] rounded-3xl  border-black border-2 pr-5">

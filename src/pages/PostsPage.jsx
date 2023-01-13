@@ -21,6 +21,7 @@ const PostsPage = () => {
 
   const updateEvent = () => {
     SetClicked(!clicked);
+    console.log("call");
   };
   const fetchPost = async () => {
     try {
@@ -71,7 +72,8 @@ const PostsPage = () => {
   // }, [clicked]);
   useEffect(() => {
     fetchPost();
-  }, [skip]);
+    console.log("effected");
+  }, [skip, clicked]);
 
   return (
     <div className="mt-32 md:mt-0">

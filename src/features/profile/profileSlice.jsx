@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../auth/authSlice";
 
 export const getProfile = createAsyncThunk(
   "profile/getProfile",

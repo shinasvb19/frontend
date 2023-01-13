@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ProfilePicModal from "../components/modals/ProfilePicModal";
 import Navbar from "../components/Navbar";
 import NotificationCard from "../components/posts/NotificationCard";
 import ProfileMain from "../components/profile/ProfileMain";
@@ -14,6 +15,7 @@ import {
 } from "../features/profile/profileSlice";
 
 const ProfilePage = () => {
+  const [updated, setUpdate] = useState();
   const token = useSelector(selectCurrentToken);
   // const id = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ const ProfilePage = () => {
   return (
     <div>
       <Navbar />
+
       <div className="mt-32 flex  mx-auto max-w-[1400px]">
         <ProfileMain />
         <NotificationCard />

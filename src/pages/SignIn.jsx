@@ -23,6 +23,7 @@ const SignIn = () => {
   useEffect(() => {
     setErrMsg("");
   }, [email, password]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

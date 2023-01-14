@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../features/auth/authSlice";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { BsImages } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import { FcGallery } from "react-icons/fc";
 import { IoLocation } from "react-icons/io5";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../features/auth/authSlice";
-
 const overlay_style = {
   position: "fixed",
   top: 0,
@@ -25,8 +24,7 @@ const Register_style = {
   padding: "50px",
   zIndex: 1000,
 };
-
-const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
+const ProfileCover = ({ onCoverOpen, onCoverClose, updateProfile }) => {
   const [image, SetImage] = useState("");
 
   const imageInput = useRef(null);
@@ -43,20 +41,17 @@ const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.url);profilePicModal
-        // // const id = userDetails._id;
-        // console.log(id);
-        const profilePicture = data.url;
+        const coverPicture = data.url;
         fetch(`http://localhost:5000/profile/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ profilePicture }),
+          body: JSON.stringify({ coverPicture }),
         })
           .then((res) => res.json())
           .then((data) => {
-            onClose();
+            onCoverClose();
             resetShare();
             updateProfile();
           });
@@ -67,7 +62,7 @@ const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
     SetImage(null);
   };
 
-  if (!onOpen) return null;
+  if (!onCoverOpen) return null;
   return (
     <>
       <div style={overlay_style}>
@@ -76,12 +71,10 @@ const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
           style={Register_style}
         >
           <div className="font-extrabold flex justify-between   w-[100%] mb-12">
-            <h1 className="font-extrabold text-lg">
-              Update your profile photo
-            </h1>
+            <h1 className="font-extrabold text-lg">Update your cover photo</h1>
             <AiFillCloseSquare
               className="font-extrabold text-xl "
-              onClick={onClose}
+              onClick={onCoverClose}
             />
           </div>
 
@@ -136,4 +129,4 @@ const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
   );
 };
 
-export default ProfilePicModal;
+export default ProfileCover;

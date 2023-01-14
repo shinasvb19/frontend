@@ -15,13 +15,16 @@ import {
 } from "../features/profile/profileSlice";
 
 const ProfilePage = () => {
-  const [updated, setUpdate] = useState();
+  const [updated, setUpdate] = useState(false);
   const token = useSelector(selectCurrentToken);
   // const id = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
+  const updateProfile = () => {
+    setUpdate(!updated);
+  };
   useEffect(() => {
     dispatch(getProfile(token));
-  }, [dispatch]);
+  }, [dispatch, updated]);
   const profile = useSelector(selectCurrentProfile);
   // console.log(profile);
   return (
@@ -29,7 +32,7 @@ const ProfilePage = () => {
       <Navbar />
 
       <div className="mt-32 flex  mx-auto max-w-[1400px]">
-        <ProfileMain />
+        <ProfileMain updateProfile={updateProfile} />
         <NotificationCard />
       </div>
     </div>

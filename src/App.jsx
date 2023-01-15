@@ -9,6 +9,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import RequireAuth from "./features/auth/RequireAuth";
 import Layout from "./components/Layout";
+import AllProfilePage from "./pages/AllProfilePage";
+import OtpVerify from "./pages/OtpVerify";
 function App() {
   return (
     <Routes>
@@ -16,10 +18,12 @@ function App() {
         <Route index element={<LandingPage />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="Signup" element={<SignUp />} />
+        <Route path="otp/verify/:mobile" element={<OtpVerify />} />
         <Route element={<RequireAuth />}>
           <Route path="jobs" element={<Jobs />} />
           <Route path="posts" element={<PostsPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="allprofile/:id" element={<AllProfilePage />} />
         </Route>
       </Route>
     </Routes>

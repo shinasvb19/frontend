@@ -23,24 +23,26 @@ const overlay_style = {
   backgroundColor: "rgb( 0, 0, 0, .7 )",
   zIndex: 1000,
 };
-const AddProfileModal = ({ onProfileOpen, onProfileClose }) => {
+const AddProfileModal = ({ onProfileOpen, onProfileClose, updateProfile }) => {
   const profile = useSelector(selectCurrentProfile);
   const [name, setName] = useState(profile.name);
   const [desc, setDesc] = useState(profile?.desc ? profile.desc : "");
   const [mobile, setMobile] = useState(profile.mobile);
   const [education, setEducation] = useState(profile.education);
-  const [institution, setInstitution] = useState(profile.institution);
+  const [institution, setInstitution] = useState(
+    profile.institutions[profile.institutions.length - 1]
+  );
   const id = useSelector(selectCurrentUser);
   const onReset = () => {
     setName(profile.name);
     setDesc(profile.desc);
     setMobile(profile.mobile);
     setEducation(profile.education);
-    setInstitution(profile.institution);
+    setInstitution(profile.institutions[profile.institutions.length - 1]);
   };
-  console.log(profile.desc);
+  // console.log(profile.desc);
 
-  console.log(profile);
+  // console.log(profile);
   const handleSubmit = (e) => {
     console.log(mobile);
     // e.preventDefault();
@@ -59,8 +61,9 @@ const AddProfileModal = ({ onProfileOpen, onProfileClose }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        open.updateEvent();
-        setDesc("");
+        onProfileClose();
+        updateProfile();
+        onReset();
       });
   };
 

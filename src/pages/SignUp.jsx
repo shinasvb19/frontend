@@ -132,8 +132,11 @@ const SignUp = () => {
     ) {
       const response = await axios.post("http://localhost:5000/register", user);
       console.log(response.data);
-      if (response.data.status === true) {
-        navigate("/signin");
+      try {
+        response.data.status;
+        navigate(`/otp/verify/${mobile}`);
+      } catch (err) {
+        console.log(err);
       }
     }
   };

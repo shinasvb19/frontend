@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   selectCurrentToken,
   selectCurrentUser,
@@ -60,17 +61,24 @@ const PostCard = ({ post }) => {
       setAllComments(response.data);
     });
   };
+  // console.log(post);
   // console.log("initial", allComments.comments);
   return (
     <>
       <div className="bg-[#FFFFFF] flex flex-col shrink px-8  h-auto mb-10 min-w-[300px] py-8 max-w-[450px] mx-auto shadow-[0_35px_60px_-14px_rgba(0,0,0,0.2)]  mt-12    rounded-lg ">
         <div className="flex">
-          <div
-            className={`mr-8 w-[50px] h-[50px] bg-[url(${post.url})] rounded-md bg-cover`}
-          ></div>
+          <img
+            className="mr-8 w-[50px] h-[50px]  rounded-md bg-cover mt-2"
+            src={post.details[0].profilePicture}
+          ></img>
 
           <div>
-            <h1 className="font-bold text-lg">{post.details[0].name}</h1>
+            <Link
+              to={`/allprofile/${post.userId}`}
+              className="font-bold text-lg"
+            >
+              {post.details[0].name}
+            </Link>
             <h1 className="font-normal text-xs">
               {post.details[0].followers.length} followers
             </h1>

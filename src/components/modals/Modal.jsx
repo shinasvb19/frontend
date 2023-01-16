@@ -50,12 +50,16 @@ const Modal = ({
             {allComments.map((comment) => {
               // console.log(comment);
               return (
-                <div className="bg-[#fefefe] w-[500px] p-5 min-h-[70px] mt-6 rounded-3xl flex flex-col align-center justify-center shadow-xl font-normal hover:scale-105">
-                  <h1 className="font-semibold">{comment.foundUser[0].name}</h1>
-                  <h1 className="mr-4 mt-2 text-[#585858]">
-                    {comment.comment}
-                  </h1>
-                </div>
+                comment?.foundUser[0] && (
+                  <div className="bg-[#fefefe] w-[500px] p-5 min-h-[70px] mt-6 rounded-3xl flex flex-col align-center justify-center shadow-xl font-normal hover:scale-105">
+                    <h1 className="font-semibold">
+                      {comment.foundUser[0].name}
+                    </h1>
+                    <h1 className="mr-4 mt-2 text-[#585858]">
+                      {comment.comment}
+                    </h1>
+                  </div>
+                )
               );
             })}
           </div>

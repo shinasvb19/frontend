@@ -85,10 +85,10 @@ const ProfileMain = ({ updateProfile }) => {
               <ul className="flex text-sm ml-8">
                 <l1 className="mr-2">followers </l1>
                 <l1 className="mr-2">
-                  {profile?.followers ? profile.followers : 0}
+                  {profile.followers?.length ? profile.followers.length : 0}
                 </l1>
                 <l1 className="mr-2">following</l1>
-                <l1 className="mr-2">{profile.followins}</l1>
+                <l1 className="mr-2">{profile.followins?.length}</l1>
               </ul>
             </div>
             <div className="mt-20 flex flex-col ">

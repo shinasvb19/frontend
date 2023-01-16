@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import instance from "../../app/api/instance";
-import { selectCurrentToken } from "../../features/auth/authSlice";
+import {
+  selectCurrentToken,
+  selectCurrentUser,
+} from "../../features/auth/authSlice";
 import { selectCurrentProfile } from "../../features/profile/profileSlice";
 import AddProfileModal from "../modals/AddProfileModal";
 import ProfileCover from "../modals/ProfileCover";
@@ -13,6 +16,8 @@ const AllProfile = () => {
   const { id } = useParams();
   const token = useSelector(selectCurrentToken);
   const [profile, setProfile] = useState({});
+  const [clicked, setClicked] = useState(true);
+  const user = useSelector(selectCurrentUser);
   useEffect(() => {
     instance
       .get(`/profile/${id}`, {
@@ -22,7 +27,39 @@ const AllProfile = () => {
         console.log(response.data);
         setProfile(response.data);
       });
-  }, []);
+  }, [clicked]);
+  const follow = () => {
+    // console.log("submitte");
+    instance
+      .post(
+        `/follow/${id}`,
+        { user },
+        {
+          headers: {
+            "X-Custom-Header": `${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setClicked(!clicked);
+      });
+  };
+  const unFollow = () => {
+    // console.log("submitte");
+    instance
+      .post(
+        `/unfollow/${id}`,
+        { user },
+        {
+          headers: {
+            "X-Custom-Header": `${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setClicked(!clicked);
+      });
+  };
   return (
     <div>
       <div className="bg-[#FFFFFF] flex flex-col   h-[500px] mb-10 max-w-[700px] md:w-[750px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] rounded-3xl lg:sticky  md:top-32">
@@ -55,10 +92,10 @@ const AllProfile = () => {
             <ul className="flex text-sm ml-8">
               <l1 className="mr-2">followers </l1>
               <l1 className="mr-2">
-                {profile?.followers ? profile.followers : 0}
+                {profile.followers?.length ? profile.followers.length : 0}
               </l1>
               <l1 className="mr-2">following</l1>
-              <l1 className="mr-2">{profile.followins}</l1>
+              <l1 className="mr-2">{profile.followins?.length}</l1>
             </ul>
           </div>
           <div className="mt-20 flex flex-col ">
@@ -70,9 +107,21 @@ const AllProfile = () => {
           </div>
         </div>
         <l1 className="ml-8 font-bold text-[#00b3ef]">Contact us</l1>
-        <div className="w-[200px] flex h-[40px] bg-black rounded-lg ml-6 text-white mt-4 justify-center items-center">
-          <h1>Follow</h1>
-        </div>
+        {!profile.followers?.length ? (
+          <button
+            onClick={follow}
+            className="w-[200px] flex h-[40px] bg-black rounded-lg ml-6 text-white mt-4 justify-center items-center"
+          >
+            <h1>Follow</h1>
+          </button>
+        ) : (
+          <button
+            onClick={unFollow}
+            className="w-[200px] flex h-[40px] bg-black rounded-lg ml-6 text-white mt-4 justify-center items-center"
+          >
+            <h1>unfollow</h1>
+          </button>
+        )}
       </div>
     </div>
   );

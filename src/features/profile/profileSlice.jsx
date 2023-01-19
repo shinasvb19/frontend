@@ -4,6 +4,7 @@ import axios from "axios";
 export const getProfile = createAsyncThunk(
   "profile/getProfile",
   async (token) => {
+    console.log("asadadadad", token);
     const res = await axios.get("http://localhost:5000/profile", {
       headers: { "X-Custom-Header": `${token}` },
     });

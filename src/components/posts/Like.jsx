@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiOutlineComment, AiFillEdit } from "react-icons/ai";
+import { RiDeleteRow } from "react-icons/ri";
+import { BsSave2, BsSaveFill } from "react-icons/bs";
 import { FaShareAlt } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { useSelector } from "react-redux";
@@ -49,14 +51,15 @@ const Like = ({ liked, onClose }) => {
 
           <div className="font-medium ml-1 text-lg">comment</div>
         </button>
-        <div className="flex mx-auto justify-between">
-          <AiFillEdit />
-          <div className="font-medium ml-1 text-lg">edit</div>
-        </div>
-        <div className="flex mx-auto justify-between">
-          <FaShareAlt className="text-lg mt-1" />
-          <div className="font-medium ml-1 text-lg">share</div>
-        </div>
+        <button className="flex mx-auto justify-between">
+          <BsSave2 className="text-lg mt-1" />
+          <div className="font-medium ml-1 text-lg">save</div>
+        </button>
+        <button className="flex mx-auto justify-between">
+          <RiDeleteRow />
+
+          <div className="font-medium ml-1 text-lg">delete</div>
+        </button>
       </div>
     </div>
   );

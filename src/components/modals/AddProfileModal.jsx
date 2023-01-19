@@ -25,12 +25,12 @@ const overlay_style = {
 };
 const AddProfileModal = ({ onProfileOpen, onProfileClose, updateProfile }) => {
   const profile = useSelector(selectCurrentProfile);
-  const [name, setName] = useState(profile.name);
+  const [name, setName] = useState(profile?.name);
   const [desc, setDesc] = useState(profile?.desc ? profile.desc : "");
-  const [mobile, setMobile] = useState(profile.mobile);
-  const [education, setEducation] = useState(profile.education);
+  const [mobile, setMobile] = useState(profile?.mobile);
+  const [education, setEducation] = useState(profile?.education);
   const [institution, setInstitution] = useState(
-    profile.institutions[profile.institutions.length - 1]
+    profile?.institutions[profile.institutions.length - 1]
   );
   const id = useSelector(selectCurrentUser);
   const onReset = () => {

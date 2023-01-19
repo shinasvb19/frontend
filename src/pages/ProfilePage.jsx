@@ -23,10 +23,11 @@ const ProfilePage = () => {
     setUpdate(!updated);
   };
   useEffect(() => {
+    console.log("adadadadadad");
     dispatch(getProfile(token));
   }, [dispatch, updated]);
   const profile = useSelector(selectCurrentProfile);
-  // console.log(profile);
+  console.log(profile);
   return (
     <div>
       <Navbar />

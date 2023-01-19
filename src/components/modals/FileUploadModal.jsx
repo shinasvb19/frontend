@@ -31,7 +31,7 @@ const overlay_style = {
 const FileUploadModal = ({ open, onClose }) => {
   const [desc, SetDesc] = useState("");
   const [image, SetImage] = useState("");
-  const imageInput = useRef(null);
+  const imageInput = useRef(null); // onClick={handleSubmit}
   const id = useSelector(selectCurrentUser);
   const imageHalndler = () => {
     const data = new FormData();

@@ -26,7 +26,7 @@ const Register_style = {
   zIndex: 1000,
 };
 
-const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
+const ProfilePicModal = ({ onOpen, onClose    , updateProfile }) => {
   const [image, SetImage] = useState("");
 
   const imageInput = useRef(null);

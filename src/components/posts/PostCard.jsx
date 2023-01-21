@@ -7,7 +7,7 @@ import {
   selectCurrentUser,
 } from "../../features/auth/authSlice";
 import Like from "./Like";
-
+import { format } from "timeago.js";
 const PostCard = ({ post }) => {
   const [open, setOpen] = useState(false);
   const openModal = () => {
@@ -82,7 +82,9 @@ const PostCard = ({ post }) => {
             <h1 className="font-normal text-xs">
               {post.details[0].followers.length} followers
             </h1>
-            <h1 className="font-normal text-xs">3 day ago</h1>
+            <h1 className="font-normal text-xs">
+              {format(post.details[0].createdAt)}
+            </h1>
           </div>
         </div>
 

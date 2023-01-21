@@ -11,6 +11,7 @@ import RequireAuth from "./features/auth/RequireAuth";
 import Layout from "./components/Layout";
 import AllProfilePage from "./pages/AllProfilePage";
 import OtpVerify from "./pages/OtpVerify";
+import Chat from "./pages/chat/Chat";
 function App() {
   return (
     <Routes>
@@ -24,6 +25,7 @@ function App() {
           <Route path="posts" element={<PostsPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="allprofile/:id" element={<AllProfilePage />} />
+          <Route path="chat" element={<Chat />} />
         </Route>
       </Route>
     </Routes>
@@ -31,3 +33,4 @@ function App() {
 }
 
 export default App;
+x;

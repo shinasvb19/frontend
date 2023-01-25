@@ -83,13 +83,11 @@ const PostsPage = () => {
     }
   };
   const read = async (skip) => {
-    const res = await fetch(`http://localhost:5000/post?skip=${skip}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await instance.get(`post?skip=${skip}`);
+    // const res = await fetch(`http://localhost:5000/post?skip=${skip}`);
     // console.log(res.json());
-    return await res.json();
+    console.log(res.data);
+    return await res.data;
   };
 
   const token = useSelector(selectCurrentToken);

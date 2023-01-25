@@ -1,16 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import instance from "../../app/api/instance";
 
-export const getProfile = createAsyncThunk(
-  "profile/getProfile",
-  async (token) => {
-    console.log("asadadadad", token);
-    const res = await axios.get("http://localhost:5000/profile", {
-      headers: { "X-Custom-Header": `${token}` },
-    });
-    return res.data;
-  }
-);
+export const getProfile = createAsyncThunk("profile/getProfile", async () => {
+  // console.log("asadadadad", token);
+  const res = await instance.get("http://localhost:5000/profile");
+  return res.data;
+});
 const profileSlice = createSlice({
   name: "profile",
   initialState: {

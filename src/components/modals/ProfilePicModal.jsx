@@ -5,6 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { FcGallery } from "react-icons/fc";
 import { IoLocation } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import instance from "../../app/api/instance";
 import { selectCurrentUser } from "../../features/auth/authSlice";
 
 const overlay_style = {
@@ -26,7 +27,7 @@ const Register_style = {
   zIndex: 1000,
 };
 
-const ProfilePicModal = ({ onOpen, onClose    , updateProfile }) => {
+const ProfilePicModal = ({ onOpen, onClose, updateProfile }) => {
   const [image, SetImage] = useState("");
 
   const imageInput = useRef(null);
@@ -47,19 +48,19 @@ const ProfilePicModal = ({ onOpen, onClose    , updateProfile }) => {
         // // const id = userDetails._id;
         // console.log(id);
         const profilePicture = data.url;
-        fetch(`http://localhost:5000/profile/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ profilePicture }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            onClose();
-            resetShare();
-            updateProfile();
-          });
+
+        // fetch(`http://localhost:5000/profile/${id}`, {
+        //   method: "PUT",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ profilePicture }),
+        // })
+        instance.put(`/profile/${id}`, { profilePicture }).then((response) => {
+          onClose();
+          resetShare();
+          updateProfile();
+        });
       })
       .catch((err) => console.log(err));
   };

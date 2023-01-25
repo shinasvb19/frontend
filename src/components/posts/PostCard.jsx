@@ -8,7 +8,8 @@ import {
 } from "../../features/auth/authSlice";
 import Like from "./Like";
 import { format } from "timeago.js";
-const   PostCard = ({ post }) => {
+import instance from "../../app/api/instance";
+const PostCard = ({ post }) => {
   const [open, setOpen] = useState(false);
   const openModal = () => {
     setOpen(true);
@@ -25,10 +26,10 @@ const   PostCard = ({ post }) => {
   );
   const [likesCount, SetLikesCount] = useState(post.likes.length);
   // console.log("this clg", post.likes);
-  const instance = axios.create({
-    baseURL: "http://localhost:5000",
-    headers: { "X-Custom-Header": `${token}` },
-  });
+  // const instance = axios.create({
+  //   baseURL: "http://localhost:5000",
+  // });
+
   const onComment = (e) => {
     SetComment(e.target.value);
   };

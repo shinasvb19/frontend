@@ -6,6 +6,7 @@ import { BsImages } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import { FcGallery } from "react-icons/fc";
 import { IoLocation } from "react-icons/io5";
+import instance from "../../app/api/instance";
 const overlay_style = {
   position: "fixed",
   top: 0,
@@ -42,19 +43,11 @@ const CvUpload = ({ onCvOpen, onCvClose, updateCv }) => {
       .then((res) => res.json())
       .then((data) => {
         const cv = data.url;
-        fetch(`http://localhost:5000/profile/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ cv }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            onCvClose();
-            resetShare();
-            updateCv();
-          });
+        instance.get(`profile/${id}`).then((response) => {
+          onCvClose();
+          resetShare();
+          updateCv();
+        });
       })
       .catch((err) => console.log(err));
   };

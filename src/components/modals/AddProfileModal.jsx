@@ -48,22 +48,7 @@ const AddProfileModal = ({ onProfileOpen, onProfileClose, updateProfile }) => {
     console.log(mobile);
     // e.preventDefault();
     instance
-      .put(`profile/${id}`, name, desc, mobile, education, institution)
-
-      // fetch(`http://localhost:5000/profile/${id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     name,
-      //     desc,
-      //     mobile,
-      //     education,
-      //     institution,
-      //   }),
-      // })
-
+      .put(`profile/${id}`, { name, desc, mobile, education, institution })
       .then((response) => {
         onProfileClose();
         updateProfile();

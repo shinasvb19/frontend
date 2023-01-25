@@ -19,46 +19,22 @@ const AllProfile = () => {
   const [clicked, setClicked] = useState(true);
   const user = useSelector(selectCurrentUser);
   useEffect(() => {
-    instance
-      .get(`/profile/${id}`, {
-        headers: { "X-Custom-Header": `${token}` },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setProfile(response.data);
-      });
+    instance.get(`/profile/${id}`).then((response) => {
+      console.log(response.data);
+      setProfile(response.data);
+    });
   }, [clicked]);
   const follow = () => {
     // console.log("submitte");
-    instance
-      .post(
-        `/follow/${id}`,
-        { user },
-        {
-          headers: {
-            "X-Custom-Header": `${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        setClicked(!clicked);
-      });
+    instance.post(`/follow/${id}`, { user }).then((response) => {
+      setClicked(!clicked);
+    });
   };
   const unFollow = () => {
     // console.log("submitte");
-    instance
-      .post(
-        `/unfollow/${id}`,
-        { user },
-        {
-          headers: {
-            "X-Custom-Header": `${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        setClicked(!clicked);
-      });
+    instance.post(`/unfollow/${id}`, { user }).then((response) => {
+      setClicked(!clicked);
+    });
   };
   return (
     <div>

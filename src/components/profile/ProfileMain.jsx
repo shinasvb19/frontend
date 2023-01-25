@@ -101,7 +101,7 @@ const ProfileMain = ({ updateProfile }) => {
             </div>
             <div className="mt-20 flex flex-col ">
               <h1 className="text-lg font-bold">Education</h1>
-              <h1>{profile?.institutions[profile.institutions.length - 1]}</h1>
+              <h1>{profile?.institutions[profile.institutions?.length - 1]}</h1>
               <button
                 className="bg-black rounded-lg mt-4 text-white"
                 onClick={onCv}

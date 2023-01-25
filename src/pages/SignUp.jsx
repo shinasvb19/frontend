@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import instance from "../app/api/instance";
 const SignUp = () => {
   const navigate = useNavigate();
   const [email, SetEmail] = useState("");
@@ -130,7 +131,7 @@ const SignUp = () => {
       mobileCheck() &&
       password === verifyPassword
     ) {
-      const response = await axios.post("http://localhost:5000/register", user);
+      const response = await instance.post("/register", user);
       console.log(response.data);
       try {
         response.data.status;

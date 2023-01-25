@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import instance from "../../app/api/instance";
 import { selectCurrentUser } from "../../features/auth/authSlice";
 import { selectCurrentProfile } from "../../features/profile/profileSlice";
 const Register_style = {
@@ -46,21 +47,24 @@ const AddProfileModal = ({ onProfileOpen, onProfileClose, updateProfile }) => {
   const handleSubmit = (e) => {
     console.log(mobile);
     // e.preventDefault();
-    fetch(`http://localhost:5000/profile/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        desc,
-        mobile,
-        education,
-        institution,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    instance
+      .put(`profile/${id}`, name, desc, mobile, education, institution)
+
+      // fetch(`http://localhost:5000/profile/${id}`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     name,
+      //     desc,
+      //     mobile,
+      //     education,
+      //     institution,
+      //   }),
+      // })
+
+      .then((response) => {
         onProfileClose();
         updateProfile();
         onReset();

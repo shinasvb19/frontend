@@ -20,7 +20,7 @@ const Admin = () => {
       <Sidebar />
       <div className="w-full h-screen">
         <div className="mx-auto max-w-[1200px] bg-white mt-20 rounded-3xl p-8">
-          <UserManagementTable data={data} load={load} change={setLoad} />
+          {/* <UserManagementTable data={data} load={load} change={setLoad} /> */}
         </div>
       </div>
     </div>

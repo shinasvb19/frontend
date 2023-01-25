@@ -32,11 +32,11 @@ const ProfileMain = ({ updateProfile }) => {
   return (
     <div>
       <CvUpload onCvClose={onCvClose} onCvOpen={onCvOpen} />
-      <AddProfileModal
+      {/* <AddProfileModal
         onProfileOpen={onProfileOpen}
         onProfileClose={onProfileClose}
         updateProfile={updateProfile}
-      />
+      /> */}
       <ProfileCover
         onCoverOpen={onCoverOpen}
         onCoverClose={onCoverClose}

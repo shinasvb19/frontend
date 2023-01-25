@@ -1,24 +1,24 @@
 import React, { useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
-import styled from "styled-components";
+// import styled from "styled-components";
 import instance from "../../app/api/instance";
 
-const TextField = styled.input`
-  height: 50px;
-  width: 250px;
-  margin-top: 20px;
+// const TextField = styled.input`
+//   height: 50px;
+//   width: 250px;
+//   margin-top: 20px;
 
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border: 2px solid black;
-  padding: 0 32px 0 16px;
+//   border-top-left-radius: 5px;
+//   border-bottom-left-radius: 5px;
+//   border-top-right-radius: 0;
+//   border-bottom-right-radius: 0;
+//   border: 2px solid black;
+//   padding: 0 32px 0 16px;
 
-  &:hover {
-    cursor: text;
-  }
-`;
+//   &:hover {
+//     cursor: text;
+//   }
+// `;
 
 const ClearButton = styled.button`
   border-top-left-radius: 0;

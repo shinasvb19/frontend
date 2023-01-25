@@ -126,7 +126,7 @@ const JobModal = ({ jobOpen, onJobClose, onJobOpenTwo, setFormOne }) => {
           <select
             onChange={formik.handleChange}
             name="jobType"
-            className="focus:outline-0 mt-2   h-10 w-[378px] text-center border-gray-700 border-2 rounded-xl"
+            className="focuVITE_BASE_URs:outline-0 mt-2   h-10 w-[378px] text-center border-gray-700 border-2 rounded-xl"
             placeholder="enter job type"
           >
             <option value="">Select option</option>

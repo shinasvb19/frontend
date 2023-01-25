@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../features/profile/profileSlice";
 import AddProfileModal from "../modals/AddProfileModal";
+import CvUpload from "../modals/CvUpload";
 import ProfileCover from "../modals/ProfileCover";
 import ProfilePicModal from "../modals/ProfilePicModal";
 
@@ -11,6 +12,7 @@ const ProfileMain = ({ updateProfile }) => {
   const [onOpen, setOpen] = useState(false);
   const [onCoverOpen, setCoverOpen] = useState(false);
   const [onProfileOpen, setProfileOpen] = useState(false);
+  const [onCvOpen, setCvOpen] = useState(false);
   const onClose = (e) => {
     setOpen(false);
   };
@@ -20,9 +22,15 @@ const ProfileMain = ({ updateProfile }) => {
   const onProfileClose = (e) => {
     setProfileOpen(false);
   };
-
+  const onCvClose = (e) => {
+    setCvOpen(false);
+  };
+  const onCv = (e) => {
+    setCvOpen(true);
+  };
   return (
     <div>
+      <CvUpload onCvClose={onCvClose} onCvOpen={onCvOpen} />
       <AddProfileModal
         onProfileOpen={onProfileOpen}
         onProfileClose={onProfileClose}
@@ -94,8 +102,11 @@ const ProfileMain = ({ updateProfile }) => {
             <div className="mt-20 flex flex-col ">
               <h1 className="text-lg font-bold">Education</h1>
               <h1>{profile?.institutions[profile.institutions.length - 1]}</h1>
-              <button className="bg-black rounded-lg mt-4 text-white">
-                Add Skills
+              <button
+                className="bg-black rounded-lg mt-4 text-white"
+                onClick={onCv}
+              >
+                Add CV
               </button>
             </div>
           </div>

@@ -19,7 +19,7 @@ const JobCard = ({ jobResults, setApplyJob }) => {
             <h1 className="font-medium text-lg">{jobResults.jobLocation}</h1>
           </div>
         </div>
-        <div className="w-700px h-auto min-h-[100px] bg-white border-b-2 mt-4 py-2 px-2">
+        <div className="w-700px h-[230px]  bg-white border-b-2 mt-4 py-2 px-2 overflow-y-scroll no-scrollbar">
           <h1 className="text-xl font-bold">
             {jobResults.company.toUpperCase()}
           </h1>
@@ -30,7 +30,12 @@ const JobCard = ({ jobResults, setApplyJob }) => {
           <h1 className="text-blue-900 font-medium mt-2">
             Skills: {jobResults.skills}
           </h1>
+
           <h1 className=" font-medium">Job type: {jobResults.workType}</h1>
+          <h1 className="text-black font-bold mt-2">
+            Description:{" "}
+            <p className="font-normal">{jobResults.jobDescription}</p>
+          </h1>
         </div>
         <div className="w-700px h-auto min-h-[100px] border-b-2">
           <button

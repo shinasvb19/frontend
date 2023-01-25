@@ -4,7 +4,13 @@ import { addMessage, getMessages } from "../../app/api/messageRequest";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import "./ChatBox.css";
-const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
+const ChatBox = ({
+  chat,
+  currentUser,
+  setSendMessage,
+  recieveMessage,
+  online,
+}) => {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -78,6 +84,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
   useEffect(() => {
     scroll.current?.scrollIntoView({ behavior: "smooth" });
   });
+
   return (
     <>
       <div className="ml-20 shadow-xl w-[1000px] h-[800px]  rounded-xl py-8 px-8">

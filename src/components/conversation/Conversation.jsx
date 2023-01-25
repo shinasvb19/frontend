@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../app/api/ChatRequest";
 
-const Conversation = ({ data, currentUserId }) => {
+const Conversation = ({ data, currentUserId, online }) => {
   console.log("this is from data", data);
   const [userData, setUSerData] = useState(null);
   useEffect(() => {
@@ -29,7 +29,11 @@ const Conversation = ({ data, currentUserId }) => {
         ></div>
         <div className="flex flex-col ml-4">
           <div className="">{userData?.name}</div>
-          <div className="text-sm font-thin">online</div>
+          {online ? (
+            <div className="text-sm font-thin">online</div>
+          ) : (
+            <div className="text-sm font-thin">ofline</div>
+          )}
         </div>
       </div>
       <hr className="mt-4 bg-[#ececec]" />

@@ -12,11 +12,15 @@ import Layout from "./components/Layout";
 import AllProfilePage from "./pages/AllProfilePage";
 import OtpVerify from "./pages/OtpVerify";
 import Chat from "./pages/chat/Chat";
+import AdminSignin from "./pages/admin/AdminSignin";
+import AdminAuth from "./features/auth/AdminAuth";
+import Admin from "./pages/admin/Admin";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
+        <Route path="/admin/signin" element={<AdminSignin />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="Signup" element={<SignUp />} />
         <Route path="otp/verify/:mobile" element={<OtpVerify />} />
@@ -27,10 +31,12 @@ function App() {
           <Route path="allprofile/:id" element={<AllProfilePage />} />
           <Route path="chat" element={<Chat />} />
         </Route>
+        <Route element={<AdminAuth />}>
+          <Route path="dashboard" element={<Admin />} />
+        </Route>
       </Route>
     </Routes>
   );
 }
 
 export default App;
-x;

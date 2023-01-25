@@ -8,7 +8,7 @@ import {
 } from "../../features/auth/authSlice";
 import Like from "./Like";
 import { format } from "timeago.js";
-const PostCard = ({ post }) => {
+const   PostCard = ({ post }) => {
   const [open, setOpen] = useState(false);
   const openModal = () => {
     setOpen(true);

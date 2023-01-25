@@ -46,6 +46,11 @@ const Chat = () => {
       setRecieveMessage(data);
     });
   }, []);
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+  };
   return (
     <div>
       <Navbar />
@@ -103,6 +108,7 @@ const Chat = () => {
                 className=""
               >
                 <Conversation
+                  online={checkOnlineStatus(chat)}
                   data={chat}
                   currentUserId={user._id}
                   user={user}

@@ -1,7 +1,6 @@
-import { data } from "autoprefixer";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import instance from "../app/api/instance";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
@@ -9,7 +8,11 @@ import NotificationCard from "../components/posts/NotificationCard";
 import PostCard from "../components/posts/PostCard";
 import PostElement from "../components/posts/PostElement";
 import ProfileCard from "../components/posts/ProfileCard";
-import { selectCurrentToken } from "../features/auth/authSlice";
+import FindFreinds from "../components/profile/FindFreinds";
+import {
+  selectCurrentToken,
+  selectCurrentUser,
+} from "../features/auth/authSlice";
 
 const PostsPage = () => {
   const [skip, setSkip] = useState(0);
@@ -18,7 +21,30 @@ const PostsPage = () => {
   const [loader, setLoader] = useState(false);
   const [posts, setPosts] = useState([]);
   const [clicked, SetClicked] = useState(false);
+  const [userResult, setUserResult] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
+  const [followUpdate, setFollowUpdate] = useState(false);
 
+  const followUpdater = () => {
+    setFollowUpdate(!followUpdate);
+    // console.log("ivide irrr r r  ");
+  };
+  const userId = useSelector(selectCurrentUser);
+
+  // console.log(applyJob);
+  useEffect(() => {
+    instance
+      .get("/users")
+      .then((response) => {
+        setUserResult(response.data);
+
+        return response;
+      })
+      .then((response) => {
+        setSearchResult(response.data);
+        console.log(response.data);
+      });
+  }, []);
   const updateEvent = () => {
     SetClicked(!clicked);
     console.log("call");
@@ -79,7 +105,7 @@ const PostsPage = () => {
     <div className="mt-32 md:mt-0">
       <Navbar />
       <div className="grid  grid-cols-1 lg:grid-cols-3 mt-8 max-w-[1300px] mx-auto">
-        <ProfileCard />
+        <ProfileCard followUpdate={followUpdate} />
         <div
           className="mt-32 max-h-[800px] overflow-scroll no-scrollbar "
           onScroll={handleScroll}
@@ -95,8 +121,14 @@ const PostsPage = () => {
             </h1>
           )}
         </div>
-
-        <NotificationCard />
+        <div className="flex flex-col mt-24">
+          <FindFreinds
+            followUpdater={followUpdater}
+            userResult={userResult}
+            setSearchResult={setSearchResult}
+            searchResult={searchResult}
+          />
+        </div>
       </div>
       <Footer />
     </div>

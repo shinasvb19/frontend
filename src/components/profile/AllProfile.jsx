@@ -107,7 +107,7 @@ const AllProfile = () => {
           </div>
         </div>
         <l1 className="ml-8 font-bold text-[#00b3ef]">Contact us</l1>
-        {!profile.followers?.length ? (
+        {!profile.followers?.includes(user) ? (
           <button
             onClick={follow}
             className="w-[200px] flex h-[40px] bg-black rounded-lg ml-6 text-white mt-4 justify-center items-center"

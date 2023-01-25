@@ -35,7 +35,9 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link>
           </li>
 
-          <li className="p-6">Contact</li>
+          <li className="p-6">
+            <Link to="/chat">chat</Link>
+          </li>
           <li className="p-6">
             {user ? (
               <button

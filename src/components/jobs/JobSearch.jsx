@@ -69,7 +69,7 @@ const JobSearch = ({ jobResult, setSearchResult }) => {
           </button>
         </div>
       </form>
-    </div>
+    </div>  
   );
 };
 

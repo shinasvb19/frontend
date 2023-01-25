@@ -10,13 +10,7 @@ const Jobs = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [applyJob, setApplyJob] = useState();
   const userId = useSelector(selectCurrentUser);
-  // const job = async () => {
-  //   const response = await instance.get("/job");
-  //   setJobResult(response.data.job);
-  //   console.log(response.data);
-  // };
-
-  console.log(applyJob);
+  // console.log(applyJob);
   useEffect(() => {
     instance
       .get("/job")
@@ -43,7 +37,11 @@ const Jobs = () => {
     <div>
       <Navbar />
       <div className="flex my-32  mx-auto   max-w-[1200px]">
-        <JobSearch jobResult={jobResult} setSearchResult={setSearchResult} />
+        <JobSearch
+          jobResult={jobResult}
+          setSearchResult={setSearchResult}
+          searchResult={searchResult}
+        />
         <div className="flex items-center justify-center ml-12 flex-col">
           {searchResult.map((jobResults) => {
             return (

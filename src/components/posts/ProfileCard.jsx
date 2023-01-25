@@ -8,13 +8,13 @@ import {
 } from "../../features/profile/profileSlice";
 import ProfilePage from "../../pages/ProfilePage";
 
-const ProfileCard = () => {
+const ProfileCard = ({ followUpdate }) => {
   const token = useSelector(selectCurrentToken);
   const profile = useSelector(selectCurrentProfile);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfile(token));
-  }, [dispatch]);
+  }, [dispatch, followUpdate]);
   return (
     <>
       <div className="bg-[#FFFFFF] flex flex-col items-center  h-[350px] mb-10 w-[300px] mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]   px-4  rounded-lg lg:sticky  md:top-32">
@@ -41,11 +41,11 @@ const ProfileCard = () => {
         <div className="bg-[#F9F9F9] w-[250px] mt-4 first-letter h-[100px]">
           <div className="flex justify-between font-medium mx-8 my-4">
             <h1 className="pr-2">followers</h1>
-            <h1>{profile.followers}</h1>
+            <h1>{profile.followers?.length}</h1>
           </div>
           <div className="flex justify-between font-medium mx-8 my-4">
             <h1 className="pr-2">following</h1>
-            <h1>{profile.followin}</h1>
+            <h1>{profile?.followins?.length}</h1>
           </div>
         </div>
       </div>

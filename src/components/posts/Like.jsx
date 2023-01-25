@@ -13,11 +13,6 @@ import {
 } from "../../features/auth/authSlice";
 import Modal from "../modals/Modal";
 const Like = ({ liked, onClose }) => {
-  // console.log(liked.post);
-
-  // console.log(liked.post._id);
-
-  // console.log("yea mate", liked.allComments);
   return (
     <div>
       <Modal

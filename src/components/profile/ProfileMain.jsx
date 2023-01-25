@@ -53,7 +53,7 @@ const ProfileMain = ({ updateProfile }) => {
               onClick={(e) => {
                 setCoverOpen(true);
               }}
-              src={profile.coverPicture}
+              src={profile?.coverPicture}
               className=" h-[150px]  w-full rounded-3xl bg-cover"
             ></img>
           ) : (

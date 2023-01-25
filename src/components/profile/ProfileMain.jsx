@@ -93,15 +93,15 @@ const ProfileMain = ({ updateProfile }) => {
               <ul className="flex text-sm ml-8">
                 <l1 className="mr-2">followers </l1>
                 <l1 className="mr-2">
-                  {profile?.followers?.length ? profile.followers.length : 0}
+                  {/* {profile?.followers?.length ? profile.followers.length : 0} */}
                 </l1>
                 <l1 className="mr-2">following</l1>
-                <l1 className="mr-2">{profile?.followins?.length}</l1>
+                {/* <l1 className="mr-2">{profile?.followins?.length}</l1> */}
               </ul>
             </div>
             <div className="mt-20 flex flex-col ">
               <h1 className="text-lg font-bold">Education</h1>
-              <h1>{profile?.institutions[profile.institutions?.length - 1]}</h1>
+              {/* <h1>{profile?.institutions[profile.institutions.length - 1]}</h1> */}
               <button
                 className="bg-black rounded-lg mt-4 text-white"
                 onClick={onCv}

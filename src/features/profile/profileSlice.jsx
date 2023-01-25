@@ -4,7 +4,7 @@ import instance from "../../app/api/instance";
 
 export const getProfile = createAsyncThunk("profile/getProfile", async () => {
   // console.log("asadadadad", token);
-  const res = await instance.get("http://localhost:5000/profile");
+  const res = await instance.get("/profile");
   return res.data;
 });
 const profileSlice = createSlice({

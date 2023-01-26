@@ -5,7 +5,10 @@ const Resume = ({ user }) => {
   return (
     <div>
       <button className="bg-black rounded-2xl w-48 text-white h-7 mt-4">
-        Dowload Resume
+        {console.log(user.cv)}
+        <a href={user?.cv} target="">
+          Dowload Resume
+        </a>
       </button>
     </div>
   );

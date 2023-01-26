@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
-        <Route path="admin/signin" element={<AdminSignin />} />
+        <Route path="admin" element={<AdminSignin />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="Signup" element={<SignUp />} />
         <Route path="otp/verify/:mobile" element={<OtpVerify />} />

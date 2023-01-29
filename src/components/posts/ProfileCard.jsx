@@ -17,7 +17,7 @@ const ProfileCard = ({ followUpdate }) => {
   }, [dispatch, followUpdate]);
   return (
     <>
-      <div className="bg-[#FFFFFF] flex flex-col items-center  h-[350px] mb-10 w-[300px] mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]   px-4  rounded-lg lg:sticky  md:top-32">
+      <div className="overflow-hidden bg-[#FFFFFF] flex flex-col items-center  h-[350px] mb-10 w-[300px] mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]   px-4  rounded-lg lg:sticky  md:top-32">
         {profile?.coverPicture ? (
           <img
             src={profile.coverPicture}

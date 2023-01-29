@@ -14,7 +14,7 @@ const Chat = () => {
   const [recieveMessage, setRecieveMessage] = useState(null);
 
   useEffect(() => {
-    socket.current = io("https://soket.onrender.com");
+    socket.current = io("ws://localhost:8800");
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);

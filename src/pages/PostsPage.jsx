@@ -23,12 +23,12 @@ const PostsPage = () => {
   const [clicked, SetClicked] = useState(false);
   const [userResult, setUserResult] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const [followUpdate, setFollowUpdate] = useState(false);
+  const [followUpdate, setFollowUpdate] = useState();
 
   const followUpdater = () => {
     setFollowUpdate(!followUpdate);
-    // console.log("ivide irrr r r  ");
   };
+
   const userId = useSelector(selectCurrentUser);
 
   // console.log(applyJob);
@@ -42,7 +42,7 @@ const PostsPage = () => {
       })
       .then((response) => {
         setSearchResult(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       });
   }, []);
   const updateEvent = () => {

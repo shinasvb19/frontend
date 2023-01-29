@@ -15,7 +15,6 @@ const Register_style = {
   transform: "translate(-50%,-50%)",
   backgroundColor: "#FFF",
   padding: "50px",
-  zIndex: 1000,
 };
 
 const overlay_style = {
@@ -25,7 +24,6 @@ const overlay_style = {
   right: 0,
   bottom: 0,
   backgroundColor: "rgb( 0, 0, 0, .7 )",
-  zIndex: 1000,
 };
 
 const FileUploadModal = ({ open, onClose }) => {
@@ -76,9 +74,9 @@ const FileUploadModal = ({ open, onClose }) => {
   if (!open.open) return null;
   return (
     <>
-      <div style={overlay_style}>
+      <div style={overlay_style} className="z- absolute">
         <div
-          className="flex flex-col w-[500px] h-[700px] rounded-3xl "
+          className="flex flex-col w-[500px] h-[700px] rounded-3xl backdrop-blur-sm bg-opacity-50"
           style={Register_style}
         >
           <div className="font-extrabold flex justify-between   w-[100%] mb-12">

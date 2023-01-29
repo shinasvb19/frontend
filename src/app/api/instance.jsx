@@ -1,4 +1,5 @@
 import axios from "axios";
+import { logOut } from "../../features/auth/authSlice";
 import { store } from "../store";
 
 const instance = axios.create({
@@ -14,4 +15,18 @@ instance.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // console.log("error occuraced in ");
+    if (error.response.status === 403 || error.response.status === 401) {
+      // console.log("logout have to tiger");
+      store.dispatch(logOut());
+    } else {
+      return Promise.reject(error);
+    }
+  }
+);
 export default instance;

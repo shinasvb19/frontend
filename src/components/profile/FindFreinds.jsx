@@ -19,11 +19,7 @@ const FindFreinds = ({
     if (!e.target.value) return setSearchResult(userResult);
     const resultArray = userResult.filter(
       (userResult) => userResult.name.toLowerCase().includes(e.target.value)
-      // userResult.company.toLowerCase().includes(e.target.value) ||
-      // userResult.jobType.toLowerCase().includes(e.target.value) ||
-      // userResult.workType.toLowerCase().includes(e.target.value) ||
-      // userResult.jobLocation.toLowerCase().includes(e.target.value) ||
-      // userResult.skills.toLowerCase().includes(e.target.value)
+   
     );
     setSearchResult(resultArray);
     console.log("result", resultArray);

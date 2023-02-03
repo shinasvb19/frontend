@@ -7,6 +7,7 @@ const overlay_style = {
   right: 0,
   bottom: 0,
   backgroundColor: "rgb( 0, 0, 0, .7 )",
+  zIndex: 1000,
 };
 const Register_style = {
   position: "fixed",
@@ -15,6 +16,7 @@ const Register_style = {
   transform: "translate(-50%,-50%)",
   backgroundColor: "#FFF",
   padding: "50px",
+  zIndex: 1000,
 };
 const Modal = ({
   open,
@@ -31,9 +33,9 @@ const Modal = ({
   // console.log(comment);
   if (!open) return null;
   return (
-    <div style={overlay_style} className="z-50">
+    <div style={overlay_style}>
       <div
-        className="flex flex-col w-[700px] h-[700px] rounded-3xl backdrop-blur-sm bg-opacity-50 "
+        className="flex flex-col w-[700px] h-[700px] rounded-3xl  "
         style={Register_style}
       >
         <div className="font-extrabold flex justify-between   w-[100%] mb-12">

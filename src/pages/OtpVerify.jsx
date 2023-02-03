@@ -20,7 +20,7 @@ const OtpVerify = () => {
         navigate("/signin");
       })
       .catch((error) => {
-        console.log(err);
+        console.log(error);
       });
   };
   return (

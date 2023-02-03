@@ -7,10 +7,14 @@ const Conversation = ({ data, currentUserId, online }) => {
   useEffect(() => {
     const userId = data.members.find((id) => id !== currentUserId);
     // console.log("userId", userId);
+    // console.log(data,'ith tha');
     const getUserData = async () => {
       try {
+      
         const { data } = await getUser(userId);
+       
         setUSerData(data);
+        console.log('this is data', data);
         // dispatch({ type: "SAVE_USER", data: data });
       } catch (error) {
         console.log(error);
@@ -19,7 +23,7 @@ const Conversation = ({ data, currentUserId, online }) => {
 
     getUserData();
   }, []);
-  // console.log(userData);
+   console.log(userData);
   return (
     <div className="mt-6">
       <div className="flex items-center ">
